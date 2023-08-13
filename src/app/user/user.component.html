@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <div *ngIf="dotos" class="d-flex" style="height: 50px; align-items: center;">
+        <div class="card mr-3" style="max-width: 300px;">
+          <div class="row g-0" style="height: 50px;">
+            <div class="col-md-4 mr-2">
+              <img src={{foundUser.avatar}} style="height: 50px;" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8" style="overflow: hidden;" >
+              <div class="row  h-100" style="align-items: center; justify-content: center;">
+                <p class="card-title  w-100">{{foundUser.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="mx-2 btn btn-outline-danger" (click)="logout()" type="submit">logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="container">
+    <div class="row mt-3">
+        <h4>
+            Welcome: {{foundUser.username}} <br>
+        Please enter your Password</h4>
+ 
+          <form *ngIf="!dotos">
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control " #password name="password"  placeholder="Password">
+              </div>
+              <button class="btn btn-primary" (click)="getTodo(password.value)" type="button" >submit</button>
+         </form>
+         <form *ngIf="dotos">
+          <div class="mb-3">
+              <label for="taskName" class="form-label">task name</label>
+              <input type="text" class="form-control "  name="taskName"  #taskName   placeholder="task name">
+            </div>
+   
+            <button class="btn btn-primary" (click)="addTodo(taskName.value)" type="button" >submit</button>
+       </form>
+
+    </div>
+    <div *ngIf="dotos" class="mt-5">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div *ngFor="let todo of dotos" class="col">
+          <div class="card h-100">
+            <div class="card-body">
+              
+              <p class="card-text">task name: {{todo.task}}</p>
+              <p class="card-text">completed: {{todo.completed}}</p>
+              <div class="row " >
+                <div class="w-50 text-center">  <button class="btn btn-success w-100" (click)="changeStatus(todo.id)">change status</button></div>
+                <div class="w-50 text-center"> <button class="btn btn-danger w-100" (click)="deleteTodo(todo.id)" >delete</button></div>
+                
+                 </div>
+            </div>
+          </div>
+        </div>
+       
+      
+      </div>
+     </div>
+
+</div>

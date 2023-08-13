@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div *ngFor="let user of _User" class="col">
+          <div class="card">
+            <img src={{user.avatar}} class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Name: {{user.name}}</h5>
+              <p class="card-text">Username: {{user.username}}</p>
+             
+              <a  [routerLink]="['/user', user.id]" class="btn btn-primary">todo list</a>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
